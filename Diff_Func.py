@@ -72,9 +72,8 @@ def solve_pressure(p, rhs, dx, max_iter=1000, omega=1.7, tol=1e-7):
 
 @numba.jit(nopython=True, cache=True)
 def neumann_bc(array):
-    # Apply Neumann boundary condition
-    array[:, -1] = array[:, -2] #(right boundary condition)
-    array[-1, :] = array[-2, :] #(bottom boundary condition)
-    array[:, 0] = array[:, 1] #(left boundary condition)
-    #array[0, :] = array[1, :] #(top boundary condition)
+    array[:, -1] = array[:, -2] #rechte Randbedingung
+    array[-1, :] = array[-2, :] #untere Randbedingung
+    array[:, 0] = array[:, 1] #linke Randbedingung
+    #array[0, :] = array[1, :] #top Randbedingung
     return array
